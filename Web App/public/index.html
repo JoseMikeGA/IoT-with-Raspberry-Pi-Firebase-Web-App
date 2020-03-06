@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Taller DHI</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Fjalla+One|Rubik&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+    
+    <script>
+      var config = {
+        apiKey: "AIzaSyD_gAAMh_-dPPkw6TwrdNvcD4DuyzyrpTc",
+        authDomain: "hack-dhi.firebaseapp.com",
+        databaseURL: "https://hack-dhi.firebaseio.com",
+        storageBucket: "hack-dhi.appspot.com",
+        messagingSenderId: "311134208015",
+        appId: "1:311134208015:web:31486e82d1aa20e500e37a"
+      };
+      firebase.initializeApp(config);
+    </script>
+    </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar- bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Control Invernadero</a>
+        <ul class="nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#lamparas">Iluminación</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#sensores">Sensores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#valvulas">Válvulas</a>
+          </li>
+        </ul>
+      </nav>
+      <div
+        class="cover d-flex justify-content-center align-items-center flex-column"
+      >
+        <h1>
+          Smart GreenHouse
+        </h1>
+        <h2>
+          IoT Raspberry Pi+Firebase
+        </h2>
+        <p>GDG Celaya</p>
+      </div>
+    </header>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <section>
+      <div class="container mt-5 mb-5" id="lamparas">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-success">
+              <div class="panel-heading">Firebase invernadero</div>
+              <div class="panel-body">
+                 <div class="checkbox">
+                   <label>
+                    <input type="checkbox" id="checkLed1">Lampara 1
+                  </label>
+
+                  <div class="checkbox">
+                    <label>
+                     <input type="checkbox" id="checkLed2">Lampara 2
+                   </label>
+                 </div>
+              </div>
+            </div>      
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <section>
+      <hr>
+      <!-- Comments Form -->
+      <div class="card my-4"  id="valvulas">
+        <h5 class="card-header">Ingresa min para cerrar o max para abrir la valvula: </h5>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <textarea id="mainText" class="form-control" rows="3" placeholder="Ingresa Valvula aqui... "></textarea>
+            </div>
+            <button id="submitBtn" onclick="submitClick()" class="btn btn-primary">Accionar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <section>
+        <!-- Side Widget -->
+        <div class="card my-4" id="sensores">
+          <h3 class="card-header">Sensores</h3>
+          <div class="card-body">
+            <p class="lead"> Humedad: </p>
+            <p id="paragraph1"> </p>
+            <p class="lead"> Luminosidad: </p>
+            <p id="paragraph2"> </p>
+            <p class="lead"> Movimiento: </p>
+            <p id="paragraph3"> </p>
+            <p class="lead"> </p>
+            <p></p>
+          </div>
+        </div>
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+      <script>
+      
+
+          
+          /*var database = firebase.database().ref('iluminacion').set({
+            led1:true,
+            led2:true
+          });
+      */
+
+        var db = firebase.database().ref('iluminacion');
+        // último estado
+      
+        db.on('value', function(data){
+          
+          console.log("data: ", data.val().foco1);
+
+          $("#checkLed1").prop('checked', data.val().foco1);
+          $("#checkLed2").prop('checked', data.val().foco2);
+
+        });
+      
+      
+        $("#checkLed1").click(function(){
+          var estado = $(this).is(':checked');
+          
+          if(estado){ 
+            db.update({
+              foco1:'true'
+            });
+
+          }else{
+            db.update({
+              foco1:'false'
+            });
+          }
+        });
+
+        $("#checkLed2").click(function(){
+          var estado = $(this).is(':checked');
+          
+          if(estado){ 
+            db.update({
+              foco2:'verdad'
+            });
+
+          }else{
+            db.update({
+              foco2:'falso'
+            });
+          }
+        });
+
+        var mainText = document.getElementById("mainText");
+        var submitBtn = document.getElementById("submitBtn")
+
+        function submitClick() {
+
+          var firebaseRef = firebase.database().ref('valvula');
+          var messageText = mainText.value;
+
+          firebaseRef.child("valvula1").set(messageText);
+        }
+        
+        var paragraph1 = document.getElementById("paragraph1");
+        var firebaseParagraph1Ref = firebase.database().ref('sensores').child("humedad")
+        firebaseParagraph1Ref.on('value', function(datasnapshot){
+          paragraph1.innerText = datasnapshot.val();
+        });
+
+        var paragraph2 = document.getElementById("paragraph2");
+        var firebaseParagraph2Ref = firebase.database().ref('sensores').child("ldr")
+        firebaseParagraph2Ref.on('value', function(datasnapshot){
+          paragraph2.innerText = datasnapshot.val();
+        });
+
+        var paragraph3 = document.getElementById("paragraph3");
+        var firebaseParagraph3Ref = firebase.database().ref('sensores').child().child("pir")
+        firebaseParagraph3Ref.on('value', function(datasnapshot){
+          paragraph3.innerText = datasnapshot.val();
+        });
+      
+  </script>    
+  </body>
+</html>
+ 
