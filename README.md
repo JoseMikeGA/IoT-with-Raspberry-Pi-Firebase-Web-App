@@ -50,20 +50,25 @@ https://firebase.google.com
 
 Después de haber hecho las configuraciones de Firebase comenzamos con el diseño de nuestra Web App y a darle estilo. Es muy importante agregar las keys para poder utilizar Firebase en nuestra Web App, todo esto dentro del <head></head>.
 
-< <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
-<    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
-<    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
-< <script>
-<      var config = {
-<        apiKey: "apiKey",
-<        authDomain: "hack-dhi.firebaseapp.com",
-<        databaseURL: "authDomain",
-<        storageBucket: "storageBucket",
-<        messagingSenderId: "messagingSenderId",
-<        appId: "appId"
-<      };
-<      firebase.initializeApp(config);
-< </script>
+<pre>
+<code>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+<script>
+      var config = {
+        apiKey: "apiKey",
+        authDomain: "hack-dhi.firebaseapp.com",
+        databaseURL: "authDomain",
+        storageBucket: "storageBucket",
+        messagingSenderId: "messagingSenderId",
+        appId: "appId"
+      };
+      firebase.initializeApp(config);
+</script>
+
+</pre>
+</code>
 
 ### 
 
