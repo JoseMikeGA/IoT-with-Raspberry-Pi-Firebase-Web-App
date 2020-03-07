@@ -25,39 +25,49 @@ En este taller usaremos las siguientes herramientas:
 ### Temario
 
 * Presentacion del curso
-* JS para AoG 
-* Creación de un proyecto (TacoBot) 
-* Slot-Filling 
-* Fulfillment 
-* Custom Entities
-* Implement a Webhook
-* Empezando con Firebase
-* Firebase Functions
-* Webhooks para Cody Hacks 
-* Firebase DB [Firestore]
-* Show RSVPs
-* Follow Up Intent
+* IoT
+* Instalación de Node JS
+* Firebase
+* 
 * Deployment
 * Que aprendimos, Despedida
 
-#### Version 2 API DialogFlow
-Para usar la versión 2 del API de dialogflow es necesario cambiar el path de la variable *params* de la siguiente manera.  
+#### Instalación Node JS
+https://nodejs.org/es/
 
-    let params = request.body.queryResult.parameters;
+#### Firebase   
+https://firebase.google.com
 
+1. Crear una cuenta en Firebase con un correo de Gmail.
+2. Ir a consola y comenzar un proyecto nuevo.
+3. Añade Firebase a tu App Web.
+4. Desde terminal entramos a la carpeta en donde vamos a trabajar:
+        > npm install -g firebase-tools
+        > firebase init 
+        > firebase serve
 
-#### Demo TacoBot   
-![Demo TacoBot](https://firebasestorage.googleapis.com/v0/b/hackcf-1a937.appspot.com/o/tacobot.gif?alt=media&token=28a185e9-6411-4c74-a02c-e607db9efe01) 
+### Demo Web App
 
-### Demo Cody Hack en Assistant
-![](https://firebasestorage.googleapis.com/v0/b/hackcf-1a937.appspot.com/o/HackFull.gif?alt=media&token=1462a00b-dcbe-4d7b-844d-662c6dfadc05)
+Después de haber hecho las configuraciones de Firebase comenzamos con el diseño de nuestra Web App y a darle estilo. Es muy importante agregar las keys para poder utilizar Firebase en nuestra Web App, todo esto dentro del <head></head>.
 
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+    
+<script>
+      var config = {
+        apiKey: "apiKey",
+        authDomain: "hack-dhi.firebaseapp.com",
+        databaseURL: "authDomain",
+        storageBucket: "storageBucket",
+        messagingSenderId: "messagingSenderId",
+        appId: "appId"
+      };
+      firebase.initializeApp(config);
+</script>
 
-### Demo Cody Hack en Web
-![Demo](https://firebasestorage.googleapis.com/v0/b/hackcf-1a937.appspot.com/o/DemoWeb.png?alt=media&token=de1fbac3-4a4c-4739-b014-4a6c5c57c13b)
+### 
 
-### Firebase
-![Firebase](https://firebasestorage.googleapis.com/v0/b/hackcf-1a937.appspot.com/o/back.gif?alt=media&token=e707b4b7-3815-4984-a6a8-e8db63903415)
 
 ### Recursos
 * **Privacy Policy [Guide](https://developers.google.com/actions/policies/privacy-policy-guide)**
