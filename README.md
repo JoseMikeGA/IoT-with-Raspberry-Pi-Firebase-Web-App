@@ -33,6 +33,8 @@ En este taller usaremos las siguientes herramientas:
 * Raspberry Pi
 * Que aprendimos, Despedida
 
+![Flujo](https://i.pinimg.com/474x/b6/aa/97/b6aa97d9dab8ce7dd338c5a3b411c7d5.jpg)
+
 #### Instalación Node JS
 https://nodejs.org/es/
 
