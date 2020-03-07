@@ -53,8 +53,9 @@ Después de haber hecho las configuraciones de Firebase comenzamos con el diseñ
 <pre>
 <code>
 <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+
 <script>
       var config = {
         apiKey: "apiKey",
@@ -66,17 +67,29 @@ Después de haber hecho las configuraciones de Firebase comenzamos con el diseñ
       };
       firebase.initializeApp(config);
 </script>
-
 </pre>
 </code>
 
-### 
+### Lógica Java Script
+Para crear una DB desde código.
+
+<pre>
+<code>
+
+var database = firebase.database().ref('iluminacion').set({
+            led1:true,
+            led2:true
+</pre>
+</code>
+
+### Raspberry Pi
+
+![Rasp](https://www.programoergosum.com/images/cursos/238-control-de-gpio-con-python-en-raspberry-pi/pines-gpio-rpi-2.png)
+
+Instalar Raspbian, para después instalar las librerias de firebase.
+
+sudo pip install requests
+sudo pip install python-firebase
 
 
-### Recursos
-* **Privacy Policy [Guide](https://developers.google.com/actions/policies/privacy-policy-guide)**
-
-* **Privacy Policy [Generator](https://app-privacy-policy-generator.firebaseapp.com/#)**
-
-* **Privacy Policy [Sample](https://sites.google.com/view/rsvphack/home)**
 

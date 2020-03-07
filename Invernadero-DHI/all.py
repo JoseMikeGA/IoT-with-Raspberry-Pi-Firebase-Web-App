@@ -92,9 +92,9 @@ while True:
         print("Abierto")
         servo.max() 
     
-    miLdr()
-    miMovimiento()
-    miHumedad()
+    #miLdr()
+    #miMovimiento()
+    #miHumedad()
 
 
    

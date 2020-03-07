@@ -170,19 +170,23 @@
       */
 
         var db = firebase.database().ref('iluminacion');
-        // último estado
+        
+        // guardar último estado
       
         db.on('value', function(data){
           
           console.log("data: ", data.val().foco1);
-
+        
+        // le agregamos a la propiedad checked el valor de la base de datos para led1 y led2
+        
           $("#checkLed1").prop('checked', data.val().foco1);
           $("#checkLed2").prop('checked', data.val().foco2);
 
         });
       
-      
+        //Cuando le agamso click a la checkbox hacemos un callback
         $("#checkLed1").click(function(){
+          //con this hacemos referencia al mismo elemento que le hicimos click
           var estado = $(this).is(':checked');
           
           if(estado){ 
@@ -200,6 +204,8 @@
         $("#checkLed2").click(function(){
           var estado = $(this).is(':checked');
           
+          //update: Para escribir de forma simultánea en elementos secundarios específicos de un nodo sin sobrescribir otros nodos secundarios, usa el método update().
+
           if(estado){ 
             db.update({
               foco2:'verdad'
@@ -211,6 +217,8 @@
             });
           }
         });
+        
+        // Con set, para ejecutar operaciones de escritura básicas, puedes usar set() para guardar datos en una referencia que especifiques y reemplazar los datos existentes en esa ruta de acceso.
 
         var mainText = document.getElementById("mainText");
         var submitBtn = document.getElementById("submitBtn")
@@ -225,7 +233,9 @@
         
         var paragraph1 = document.getElementById("paragraph1");
         var firebaseParagraph1Ref = firebase.database().ref('sensores').child("humedad")
+        //snapshot variable que guarda la data y on, recupera u obtiene
         firebaseParagraph1Ref.on('value', function(datasnapshot){
+         //innerText establece el texto
           paragraph1.innerText = datasnapshot.val();
         });
 
