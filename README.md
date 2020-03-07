@@ -28,8 +28,9 @@ En este taller usaremos las siguientes herramientas:
 * IoT
 * Instalación de Node JS
 * Firebase
-* 
-* Deployment
+* Demo Web App
+* Lógica Java Script
+* Raspberry Pi
 * Que aprendimos, Despedida
 
 #### Instalación Node JS
@@ -88,8 +89,8 @@ var database = firebase.database().ref('iluminacion').set({
 
 Instalar Raspbian, para después instalar las librerias de firebase.
 
-sudo pip install requests
-sudo pip install python-firebase
+$ sudo pip install requests
+$ sudo pip install python-firebase
 
 
 
